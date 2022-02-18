@@ -2,4 +2,10 @@
   <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
   <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
   <%= @inner_content %>
+   <script> 
+      <%= if @conn.assigns[:user] do %>
+        window.userToken = "<%= Phoenix.Token.sign(DiscussWeb.Endpoint, "key", @conn.assigns.user.id) %>"
+      <% end %>
+    </script>
 </main>
+
